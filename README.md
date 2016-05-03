@@ -1,14 +1,14 @@
 
-# trust
+# assured
 
- [![PayPal](https://img.shields.io/badge/%24-paypal-f39c12.svg)][paypal-donations] [![AMA](https://img.shields.io/badge/ask%20me-anything-1abc9c.svg)](https://github.com/IonicaBizau/ama) [![Version](https://img.shields.io/npm/v/trust.svg)](https://www.npmjs.com/package/trust) [![Downloads](https://img.shields.io/npm/dt/trust.svg)](https://www.npmjs.com/package/trust) [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/johnnyb?utm_source=github&utm_medium=button&utm_term=johnnyb&utm_campaign=github)
+ [![PayPal](https://img.shields.io/badge/%24-paypal-f39c12.svg)][paypal-donations] [![AMA](https://img.shields.io/badge/ask%20me-anything-1abc9c.svg)](https://github.com/IonicaBizau/ama) [![Version](https://img.shields.io/npm/v/assured.svg)](https://www.npmjs.com/package/assured) [![Downloads](https://img.shields.io/npm/dt/assured.svg)](https://www.npmjs.com/package/assured) [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/johnnyb?utm_source=github&utm_medium=button&utm_term=johnnyb&utm_campaign=github)
 
-> Combine promise and callbacks together.
+> Combine promises and callbacks together.
 
 ## :cloud: Installation
 
 ```sh
-$ npm i --save trust
+$ npm i --save assured
 ```
 
 
@@ -17,38 +17,71 @@ $ npm i --save trust
 
 
 ```js
-const trust = require("trust");
+const assured = require("assured");
 
-function foo(cb) {
-    cb = trust(cb);
-    setTimeout(function() {
-        cb(null, 42);
+let foo = (age, cb) => {
+
+    // Swap the callback function
+    if (typeof age === "function") {
+        cb = age;
+    }
+
+    // Proxy the callback function
+    cb = assured(cb);
+
+    // Validate the age
+    if (typeof age !== "number") {
+        return cb(new Error("Invalid age."));
+    }
+
+    // Do something async
+    setTimeout(() => {
+        cb(null, `The provided age is ${age}`);
     }, 100);
+
+    // Return the promise
     return cb._;
 }
 
-foo((err, x) => {
-    console.log(err || x);
+// Callback interface + error
+foo(err => console.log(err));
+// => [Error: Invalid age.]
+
+// Callback interface + success
+foo(42, (err, data) => console.log(err, data));
+// => null 'The provided age is 42'
+
+// Promise interface + error
+foo().then(x => {
+    console.log("Success: ", x);
+}).catch(e => {
+    console.log("Error: ", e);
+    // => Error:  [Error: Invalid age.]
 });
 
-foo().then(x => {
-    console.log(x);
+// Promise + Success
+foo(42).then(x => {
+    console.log("Success: ", x);
 }).catch(e => {
-    console.log(e);
+    console.log("Error: ", e);
 });
 ```
 
 ## :memo: Documentation
 
-### `trust(a, b)`
-Combine promise and callbacks together.
+### `assured(fn, p)`
+Proxies the callback function.
 
 #### Params
-- **Number** `a`: Param descrpition.
-- **Number** `b`: Param descrpition.
+- **Function** `fn`: The callback function to proxy.
+- **Promise** `p`: A custom promise constructor (default: the built-in `Promise`).
 
 #### Return
-- **Number** Return description.
+- **Function** The proxied callback function extended with:
+ - `resolver` (Function): The promise resolver.
+ - `assuredResolve` (Function): The resolve method.
+ - `assuredReject` (Function): The reject method.
+ - `_` (Promise): The promise object (used to `return` from your function).
 
 
 
