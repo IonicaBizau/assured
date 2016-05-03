@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/IonicaBizau/assured#readme",
   "dependencies": {
-    "noop6": "^1.0.1"
+    "noop6": "^1.0.1",
+    "sliced": "^1.0.1"
   }
 }
