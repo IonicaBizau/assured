@@ -69,6 +69,7 @@ foo(42).then(x => {
 
 ## :memo: Documentation
 
+
 ### `assured(fn, p)`
 Proxies the callback function.
 
