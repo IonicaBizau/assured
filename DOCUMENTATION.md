@@ -6,6 +6,7 @@ You can see below the API reference of this module.
 Proxies the callback function.
 
 #### Params
+
 - **Function** `fn`: The callback function to proxy.
 - **Promise** `p`: A custom promise constructor (default: the built-in `Promise`).
 
