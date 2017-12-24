@@ -10,7 +10,11 @@
 ## :cloud: Installation
 
 ```sh
-$ npm i --save assured
+# Using npm
+npm install --save assured
+
+# Using yarn
+yarn add assured
 ```
 
 
