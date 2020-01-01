@@ -3,9 +3,7 @@
 
 # assured
 
- [![Support me on Patreon][badge_patreon]][patreon] [![Buy me a book][badge_amazon]][amazon] [![PayPal][badge_paypal_donate]][paypal-donations] [![Ask me anything](https://img.shields.io/badge/ask%20me-anything-1abc9c.svg)](https://github.com/IonicaBizau/ama) [![Version](https://img.shields.io/npm/v/assured.svg)](https://www.npmjs.com/package/assured) [![Downloads](https://img.shields.io/npm/dt/assured.svg)](https://www.npmjs.com/package/assured) [![Get help on Codementor](https://cdn.codementor.io/badges/get_help_github.svg)](https://www.codementor.io/johnnyb?utm_source=github&utm_medium=button&utm_term=johnnyb&utm_campaign=github)
-
-<a href="https://www.buymeacoffee.com/H96WwChMy" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" alt="Buy Me A Coffee"></a>
+ [![Support me on Patreon][badge_patreon]][patreon] [![Buy me a book][badge_amazon]][amazon] [![PayPal][badge_paypal_donate]][paypal-donations] [![Ask me anything](https://img.shields.io/badge/ask%20me-anything-1abc9c.svg)](https://github.com/IonicaBizau/ama) [![Version](https://img.shields.io/npm/v/assured.svg)](https://www.npmjs.com/package/assured) [![Downloads](https://img.shields.io/npm/dt/assured.svg)](https://www.npmjs.com/package/assured)
 
 > Combine promises and callbacks together.
 
@@ -39,13 +37,13 @@ let foo = (age, cb) => {
 
     // Validate the age
     if (typeof age !== "number") {
-        return cb(new Error("Invalid age."));
+        cb(new Error("Invalid age."));
+    } else {
+        // Do something async
+        setTimeout(() => {
+            cb(null, `The provided age is ${age}`);
+        }, 100);
     }
-
-    // Do something async
-    setTimeout(() => {
-        cb(null, `The provided age is ${age}`);
-    }, 100);
 
     // Return the promise
     return cb._;
@@ -73,7 +71,16 @@ foo(42).then(x => {
 }).catch(e => {
     console.log("Error: ", e);
 });
+
+
+// Async - Await
+(async () => {
+    const res = await foo(32)
+    console.log(res);
+})()
 ```
+
+
 
 
 
@@ -85,6 +92,7 @@ There are few ways to get help:
  2. For bug reports and feature requests, open issues. :bug:
 
  3. For direct and quick help, you can [use Codementor](https://www.codementor.io/johnnyb). :rocket:
+
 
 
 
@@ -132,17 +140,6 @@ However, if you get some profit from this or just want to encourage me to contin
 Thanks! :heart:
 
 
-## :dizzy: Where is this library used?
-If you are using this library in one of your projects, add it in this list. :sparkles:
-
-
- - [`bloggify-plugin-class`](https://github.com/Bloggify/plugin-class#readme) (by Bloggify)—A library for managing plugin objects.
- - [`bloggify-plugin-loader`](https://github.com/Bloggify/plugin-loader#readme) (by Bloggify)—The Bloggify plugin loader.
- - [`csv-it`](https://github.com/IonicaBizau/csv-it#readme)—Simple and useful tools to work with CSV files.
- - [`fn-result`](https://github.com/IonicaBizau/fn-result#readme)—Take an (a)sync function result and pass it forward.
- - [`scrape-it`](https://github.com/IonicaBizau/scrape-it#readme)—A Node.js scraper for humans.
- - [`scrape-it-plus`](https://github.com/rukandax/scrape-it-plus#readme) (by Rukanda Faridsi)—A Node.js scraper for humans (with extended function).
- - [`tinyreq`](https://github.com/IonicaBizau/tinyreq)—Tiny library for making http(s) requests.
 
 ## :scroll: License
 
