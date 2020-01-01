@@ -14,13 +14,13 @@ let foo = (age, cb) => {
 
     // Validate the age
     if (typeof age !== "number") {
-        return cb(new Error("Invalid age."));
+        cb(new Error("Invalid age."));
+    } else {
+        // Do something async
+        setTimeout(() => {
+            cb(null, `The provided age is ${age}`);
+        }, 100);
     }
-
-    // Do something async
-    setTimeout(() => {
-        cb(null, `The provided age is ${age}`);
-    }, 100);
 
     // Return the promise
     return cb._;
@@ -48,3 +48,10 @@ foo(42).then(x => {
 }).catch(e => {
     console.log("Error: ", e);
 });
+
+
+// Async - Await
+(async () => {
+    const res = await foo(32)
+    console.log(res);
+})()
