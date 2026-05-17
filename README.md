@@ -74,7 +74,7 @@ yarn add assured
 
 
 ```js
-const assured = require("assured");
+import assured from "assured";
 
 let foo = (age, cb) => {
 
@@ -98,7 +98,7 @@ let foo = (age, cb) => {
 
     // Return the promise
     return cb._;
-}
+};
 
 // Callback interface + error
 foo(err => console.log(err));
@@ -126,31 +126,14 @@ foo(42).then(x => {
 
 // Async - Await
 (async () => {
-    const res = await foo(32)
+    const res = await foo(32);
     console.log(res);
-})()
+})();
 ```
 
 
 
 
-
-
-
-
-
-
-
-
-## :question: Get Help
-
-There are few ways to get help:
-
-
-
- 1. Please [post questions on Stack Overflow](https://stackoverflow.com/questions/ask). You can open issues with questions, as long you add a link to your Stack Overflow question.
- 2. For bug reports and feature requests, open issues. :bug:
- 3. For direct and quick help, you can [use Codementor](https://www.codementor.io/johnnyb). :rocket:
 
 
 
@@ -175,6 +158,24 @@ Proxies the callback function.
  - `assuredResolve` (Function): The resolve method.
  - `assuredReject` (Function): The reject method.
  - `_` (Promise): The promise object (used to `return` from your function).
+
+
+
+
+
+
+
+
+
+## :question: Get Help
+
+There are few ways to get help:
+
+
+
+ 1. Please [post questions on Stack Overflow](https://stackoverflow.com/questions/ask). You can open issues with questions, as long you add a link to your Stack Overflow question.
+ 2. For bug reports and feature requests, open issues. :bug:
+ 3. For direct and quick help, you can [use Codementor](https://www.codementor.io/johnnyb). :rocket:
 
 
 
@@ -223,22 +224,6 @@ Thanks! :heart:
 
 
 
-
-
-
-## :dizzy: Where is this library used?
-If you are using this library in one of your projects, add it in this list. :sparkles:
-
- - `@kazesolo/scraped`
- - `@slikts/scrape-it`
- - `bloggify-plugin-class`
- - `bloggify-plugin-loader`
- - `csv-it`
- - `fn-result`
- - `fs-file-tree`
- - `scrape-it`
- - `scrape-it-plus`
- - `tinyreq`
 
 
 
