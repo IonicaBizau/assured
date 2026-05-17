@@ -1,6 +1,4 @@
-"use strict";
-
-const assured = require("../lib");
+import assured from "../lib/index.js";
 
 let foo = (age, cb) => {
 
@@ -24,7 +22,7 @@ let foo = (age, cb) => {
 
     // Return the promise
     return cb._;
-}
+};
 
 // Callback interface + error
 foo(err => console.log(err));
@@ -52,6 +50,6 @@ foo(42).then(x => {
 
 // Async - Await
 (async () => {
-    const res = await foo(32)
+    const res = await foo(32);
     console.log(res);
-})()
+})();

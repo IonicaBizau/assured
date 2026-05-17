@@ -11,9 +11,10 @@
   ],
   "license": "MIT",
   "version": "1.0.16",
+  "type": "module",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test test/index.js"
   },
   "author": "Ionică Bizău <bizauionica@gmail.com> (https://ionicabizau.net)",
   "repository": {
@@ -25,8 +26,7 @@
   },
   "homepage": "https://github.com/IonicaBizau/assured#readme",
   "dependencies": {
-    "noop6": "^1.0.1",
-    "sliced": "^1.0.1"
+    "noop6": "^2.0.0"
   },
   "files": [
     "bin/",
